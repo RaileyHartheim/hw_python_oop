@@ -25,7 +25,7 @@ class Training:
     """Базовый класс тренировки."""
     LEN_STEP: float = 0.65
     M_IN_KM: float = 1000
-    training_type: str = 'Training'
+    TRAINING_TYPE: str = 'Training'
 
     def __init__(self,
                  action: int,
@@ -52,7 +52,7 @@ class Training:
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
-        return InfoMessage(self.training_type,
+        return InfoMessage(self.TRAINING_TYPE,
                            self.duration,
                            self.get_distance(),
                            self.get_mean_speed(),
@@ -61,7 +61,7 @@ class Training:
 
 class Running(Training):
     """Тренировка: бег."""
-    training_type: str = 'Running'
+    TRAINING_TYPE: str = 'Running'
     COEFF_CAL_1: int = 18
     COEFF_CAL_2: int = 20
     H_TO_MIN: int = 60
@@ -85,7 +85,7 @@ class Running(Training):
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
-    training_type: str = 'SportsWalking'
+    TRAINING_TYPE: str = 'SportsWalking'
     COEFF_CAL_1: float = 0.035
     COEFF_CAL_2: float = 0.029
     COEFF_CAL_3: int = 2
@@ -114,9 +114,9 @@ class SportsWalking(Training):
 class Swimming(Training):
     """Тренировка: плавание."""
     LEN_STEP: float = 1.38
-    coeff_cal_1: float = 1.1
-    coeff_cal_2: int = 2
-    training_type: str = 'Swimming'
+    COEFF_CAL_1: float = 1.1
+    COEFF_CAL_2: int = 2
+    TRAINING_TYPE: str = 'Swimming'
 
     def __init__(self,
                  action: int,
@@ -137,8 +137,8 @@ class Swimming(Training):
         return self.mean_speed
 
     def get_spent_calories(self) -> float:
-        self.calories = ((self.mean_speed + self.coeff_cal_1)
-                         * self.coeff_cal_2 * self.weight)
+        self.calories = ((self.mean_speed + self.COEFF_CAL_1)
+                         * self.COEFF_CAL_2 * self.weight)
         return self.calories
 
 
